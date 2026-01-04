@@ -1,0 +1,262 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #333;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overscroll-behavior: none;
+  user-select: none;
+}
+
+.pixel-grid-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Pixel grid and pixels styling */
+.pixel-grid {
+  display: grid;
+  grid-template-columns: repeat(128, 8px);
+  grid-template-rows: repeat(64, 8px);
+  gap: 0;
+  width: 1024px;
+  height: 512px;
+  background-color: #111;
+  border: 1px solid #666;
+  position: relative;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.pixel {
+  width: 8px;
+  height: 8px;
+  transition: background-color 0.05s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.pixel.white {
+  background-color: #fff;
+}
+
+.pixel.black-preview {
+  background-color: #222;
+}
+
+/* Mode buttons styling */
+.mode-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  gap: 5px;
+  /* Set exact width to match the pixel grid without color buttons */
+  width: 1024px; 
+  margin-left: auto;
+  margin-right: auto;
+  /* Ensure the buttons container doesn't overflow */
+  box-sizing: border-box;
+}
+
+.mode-button {
+  padding: 10px 15px;
+  background-color: #555;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.mode-button:hover {
+  background-color: #666;
+}
+
+.mode-button.active {
+  background-color: #2196F3;
+  color: white;
+}
+
+.mode-button:disabled {
+  background-color: #444;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.brush-size-control {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  color: white;
+  width: 1024px;
+  justify-content: center;
+}
+
+.brush-size-slider {
+  width: 200px;
+  margin-left: 10px;
+}
+
+.canvas-container {
+  width: 1024px !important;
+  height: 512px !important;
+  display: block !important;
+  margin: 0 auto;
+}
+
+canvas {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.brush-outline {
+  position: absolute;
+  border: 1px solid;
+  pointer-events: none;
+  z-index: 100;
+  filter: drop-shadow(0 0 1px rgb(0, 0, 0));
+  display: none;
+  box-sizing: border-box;
+}
+
+.utility-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+.esp32-connection,
+.bmp-handler {
+  position: relative;
+  display: flex;
+  gap: 10px;
+}
+
+.esp-button,
+.file-button {
+  padding: 8px 16px;
+  background-color: #555;
+  color: white;
+  border: 2px solid #444;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.esp-button:hover,
+.file-button:hover {
+  background-color: #666;
+}
+
+.esp-settings {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444;
+  padding: 15px;
+  border-radius: 6px;
+  z-index: 10;
+  width: 250px;
+  margin-top: 10px;
+}
+
+.esp-settings input {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background-color: #555;
+  color: white;
+  width: 150px;
+}
+
+.esp-settings button {
+  padding: 8px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.status {
+  margin-top: 10px;
+  font-size: 12px;
+  color: #ccc;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeSpeed;
+}
+
+.esp32-container, 
+.bmp-container, 
+.brush-size-control, 
+.mode-buttons-container {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.debug-outline {
+  border: 2px dashed red !important;
+}
+
+.drawing-area {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 auto;
+  /* Remove the explicit width here to let it be determined by content */
+  box-sizing: border-box;
+}
+
+.color-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-right: 15px;
+}
+
+.color-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+}
+
+.color-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.4);
+}
+
+.color-button:active {
+  transform: scale(0.98);
+}
