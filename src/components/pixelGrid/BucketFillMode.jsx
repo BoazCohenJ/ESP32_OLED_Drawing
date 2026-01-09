@@ -92,4 +92,4 @@ const BucketFillMode = ({ isActive, onPixelUpdate, drawColor = true }) => {
   };
 };
 
-export default BucketFillMode;
+export default BucketFillMode;  

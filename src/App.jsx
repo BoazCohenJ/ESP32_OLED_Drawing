@@ -1,15 +1,9 @@
 import React from 'react';
-import PixelGrid from './components/pixelGrid';
+import PixelGrid from './components/pixelGrid/index';
 
 const App = () => {
   return (
-    <div style={{ 
-      width: '100%', 
-      height: '100vh', 
-      display: 'flex', 
-      justifyContent: 'center', 
-      alignItems: 'center'
-    }}>
+    <div>
       <PixelGrid />
     </div>
   );

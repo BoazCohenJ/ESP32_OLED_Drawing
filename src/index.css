@@ -17,6 +17,8 @@ body {
   align-items: center;
   justify-content: center;
   padding: 20px;
+  position: relative;
+  min-height: calc(100vh - 40px);
 }
 
 /* Pixel grid and pixels styling */
@@ -41,7 +43,7 @@ body {
 .pixel {
   width: 8px;
   height: 8px;
-  transition: background-color 0.05s ease;
+  /* Removed transition for better performance */
   user-select: none;
   -webkit-user-drag: none;
   -webkit-user-select: none;
@@ -220,6 +222,20 @@ canvas {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+}
+
+/* Position ESP32 and BMP controls relative to the centered grid container */
+.esp32-container {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+.bmp-container {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
 }
 
 .debug-outline {

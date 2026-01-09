@@ -4,14 +4,15 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SH110X.h>
 #include <ArduinoJson.h>
+#include "ssid_and_pass.h"
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 
 Adafruit_SH1106G display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire);
 
-const char* ssid = "WIFI_SSID";
-const char* password = "WIFI_PASSWORD";
+const char* ssid = WIFI_SSID;
+const char* password = WIFI_PASSWORD;
 
 WebServer server(80);
 
